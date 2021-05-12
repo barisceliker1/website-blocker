@@ -259,7 +259,7 @@ class RedirectMiddleware
         $ua = getBrowser();
         $browsers = $ua['name'];
         $browser_version = $ua['version'];
-        $token = rand(5, 15);;
+        $token = rand(5, 50000);;
         Session::flash('token', $token);
         $foo = 'bar';
         $request->merge(compact('foo'));

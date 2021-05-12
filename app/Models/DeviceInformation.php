@@ -20,6 +20,10 @@ class DeviceInformation extends Model
         'did_unmount_at',
         'browser',
         'token',
+        'productSub',
+        'deviceMemory',
+        'language',
+        'cookieEnabled',
         'browser_version'
     ];
     public function redirects(): HasOne

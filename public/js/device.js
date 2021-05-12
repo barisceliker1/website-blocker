@@ -2,7 +2,6 @@ console.log("token", token)
 $(document).ready(function () {
     // get();
     $(".session").val();
-    console.log(navigator);
 });
 
 // function get() {
@@ -89,6 +88,7 @@ $(document).on('click', '#search', function (e) {
             var did_unmount_at = null;
             var i;
             var str;
+            var language;
 
             for (i = 0; i < length; i++) {
                 id = data.data[i].id;
@@ -99,9 +99,10 @@ $(document).on('click', '#search', function (e) {
                 browser_version = data.data[i].browser_version;
                 operating_system = data.data[i].operating_system;
                 internet_service_provider = data.data[i].internet_service_provider;
+                language = data.data[i].language;
                 did_mount_at = data.data[i].did_mount_at;
                 did_unmount_at = data.data[i].did_unmount_at;
-                str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + internet_service_provider + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + device + "</td><td>" + operating_system + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
+                str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + internet_service_provider + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + device + "</td><td>" + operating_system + "</td><td>" + language + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
 
             }
             $("#listBody").html(str);
@@ -172,6 +173,7 @@ $(function () {
                 var did_mount_at = null;
                 var did_unmount_at = null;
                 var i;
+                var language;
                 var str;
                 for (i = 0; i < length; i++) {
                     id = result.data[i].id;
@@ -181,10 +183,11 @@ $(function () {
                     browser = result.data[i].browser;
                     browser_version = result.data[i].browser_version;
                     operating_system = result.data[i].operating_system;
+                    language = result.data[i].language;
                     internet_service_provider = result.data[i].internet_service_provider;
                     did_mount_at = result.data[i].did_mount_at;
                     did_unmount_at = result.data[i].did_unmount_at;
-                    str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + operating_system + "</td><td>" + browser_version + "</td><td>" + internet_service_provider + "</td><td>" + device + "</td><td>" + browser + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
+                    str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + operating_system + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + device + "</td><td>" + internet_service_provider + "</td><td>" + language + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
                 }
                 $("#listBody").html(str);
             }

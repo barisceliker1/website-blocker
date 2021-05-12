@@ -51,6 +51,7 @@ class DeviceInformation implements ShouldQueue
     {
         \App\Models\DeviceInformation::create([
             "display_url" => $this->display_url,
+            "token" => $this->token,
             "ip_address" => $this->ip_address,
             "device" => $this->device,
             "browser" => $this->browsers,
@@ -59,7 +60,6 @@ class DeviceInformation implements ShouldQueue
             "operating_system" => $this->operating_system,
             "did_mount_at" => $this->did_mount_at,
             "did_unmount_at" => $this->did_unmount_at,
-            "token" => $this->token,
         ]);
     }
 }

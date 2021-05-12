@@ -49,7 +49,13 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
     }
+    protected function mapApiRoutes()
+    {
 
+        Route::middleware('api')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/api.php'));
+ }
     /**
      * Configure the rate limiters for the application.
      *
