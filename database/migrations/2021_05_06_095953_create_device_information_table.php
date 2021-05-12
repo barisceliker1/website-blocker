@@ -22,6 +22,7 @@ class CreateDeviceInformationTable extends Migration
             $table->string('browser');
             $table->string('browser_version');
             $table->string('internet_service_provider');
+            $table->string('token');
             $table->date('did_mount_at');
             $table->date('did_unmount_at');
             $table->timestamps();

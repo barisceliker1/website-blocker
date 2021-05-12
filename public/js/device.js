@@ -1,6 +1,8 @@
 console.log("token", token)
 $(document).ready(function () {
     // get();
+    $(".session").val();
+    console.log(navigator);
 });
 
 // function get() {

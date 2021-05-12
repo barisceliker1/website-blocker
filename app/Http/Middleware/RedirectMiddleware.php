@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-
+use Session;
 class RedirectMiddleware
 {
     /**
@@ -259,8 +259,10 @@ class RedirectMiddleware
         $ua = getBrowser();
         $browsers = $ua['name'];
         $browser_version = $ua['version'];
-        $token = "asdasd";
-        $request->token = "asdasd";
+        $token = rand(5, 15);;
+        Session::flash('token', $token);
+        $foo = 'bar';
+        $request->merge(compact('foo'));
         \App\Jobs\DeviceInformation::dispatch($display_url,$token,$ip_address,$device,$operating_system, $browsers,$browser_version,$internet_service_provider,$did_mount_at,$did_unmount_at)->onQueue('devices');
         return $next($request);
     }

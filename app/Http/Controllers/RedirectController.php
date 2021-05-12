@@ -6,12 +6,11 @@ use App\Models\DeviceInformation;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Session;
 class RedirectController extends Controller
 {
     function index()
     {
-
         $pagination = DB::table('device_information')->paginate(10);
         $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 // create curl resource
@@ -234,7 +233,8 @@ echo $str."<br>";;
             return redirect('welcome');
         }
         else{
-            return view('index');
+            $session = Session::get('token');
+            return view('index',compact('session'));
         }
 //        return view('index');
 //        return redirect()->action('welcome');
@@ -289,7 +289,6 @@ echo $str."<br>";;
         $searchOs = $request->input('operating_system');
         $searchLogin = $request->input('did_mount_at');
         $searchLogout = $request->input('did_unmount_at');
-
         $posts = DeviceInformation::query()
             ->where('display_url', 'LIKE', "%{$searchUrl}%")
             ->where('ip_address', 'LIKE', "%{$searchIP}%")

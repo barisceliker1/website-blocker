@@ -59,7 +59,7 @@ class DeviceInformation implements ShouldQueue
             "operating_system" => $this->operating_system,
             "did_mount_at" => $this->did_mount_at,
             "did_unmount_at" => $this->did_unmount_at,
-//            "token" => $this->token,
+            "token" => $this->token,
         ]);
     }
 }

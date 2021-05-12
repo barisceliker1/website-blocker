@@ -1,1 +1,1 @@
-[{"blockRedirect":"asdas","block_internet_service_provider":"AS9121 Turk Telekomunikasyon Anonim Sirketi","url":"http://127.0.0.1:8000/index","start":"127.0.0.*","end":"127.0.0.5","block_browser":"windows","block_browser_version":"chrome"}]
+[{"blockRedirect":"asdas","block_internet_service_provider":"AS9121 Turk Telekomunikasyon Anonim Sirketii","url":"http://127.0.0.1:8000/index","start":"127.0.0.*","end":"127.0.0.5","block_browser":"windows","block_browser_version":"chrome"}]

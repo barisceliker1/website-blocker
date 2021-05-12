@@ -7,6 +7,7 @@
 
 </head>
 <body>
+<input hidden id="session">{{$session}}>
 <H1>Başarıyla giriş sağlandı</H1>
 </body>
 </html>

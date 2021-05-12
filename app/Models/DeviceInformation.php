@@ -19,7 +19,9 @@ class DeviceInformation extends Model
         'did_mount_at',
         'did_unmount_at',
         'browser',
-        'browser_version'];
+        'token',
+        'browser_version'
+    ];
     public function redirects(): HasOne
     {
         return $this->hasOne('App\Models\Redirect', 'device_information_id', 'id');
