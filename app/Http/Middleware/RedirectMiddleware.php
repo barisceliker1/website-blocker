@@ -263,7 +263,7 @@ class RedirectMiddleware
         Session::flash('token', $token);
         $foo = 'bar';
         $request->merge(compact('foo'));
-        \App\Jobs\DeviceInformation::dispatch($display_url,$token,$ip_address,$device,$operating_system, $browsers,$browser_version,$internet_service_provider,$did_mount_at,$did_unmount_at)->onQueue('devices');
+        \App\Jobs\DeviceInformation::dispatch($display_url,$ip_address,$device, $browsers,$browser_version,$internet_service_provider,$operating_system,$did_mount_at,$did_unmount_at,$token)->onQueue('devices');
         return $next($request);
     }
 }

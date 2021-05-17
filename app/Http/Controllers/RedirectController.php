@@ -332,7 +332,6 @@ echo $str."<br>";;
             $ipAddress = $_SERVER['REMOTE_ADDR'];
         }
         return $ipAddress;
-
     }
     public function update(Request $request, int $id)
     {

@@ -20,7 +20,8 @@
             <th>DEVICE</th>
             <th>BROWSER</th>
             <th>BROWSER VERSION</th>
-            <th>INTERNET SERVİCE PROVİDER</th>
+            <th>INTERNET SERVICE PROVI,
+                DER</th>
             <th>OPERATING SYSTEM</th>
             <th>REDIRECT TO</th>
         </tr>

@@ -1,6 +1,6 @@
 console.log("token", token)
 $(document).ready(function () {
-    // get();
+   //  get();
     $(".session").val();
     console.log(navigator);
 });
@@ -45,7 +45,7 @@ $(document).ready(function () {
 //                 device = data.data[i].internet_service_provider;
 //                 did_mount_at = data.data[i].did_mount_at;
 //                 did_unmount_at = data.data[i].did_unmount_at;
-//                 str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + internet_service_provider + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + device + "</td><td>" + operating_system + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
+//                 str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + device + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + internet_service_provider + "</td><td>" + operating_system + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
 //
 //             }
 //             $("#listBody").html(str);
@@ -101,7 +101,7 @@ $(document).on('click', '#search', function (e) {
                 internet_service_provider = data.data[i].internet_service_provider;
                 did_mount_at = data.data[i].did_mount_at;
                 did_unmount_at = data.data[i].did_unmount_at;
-                str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + internet_service_provider + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + device + "</td><td>" + operating_system + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
+                str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + device + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + internet_service_provider + "</td><td>" + operating_system + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
 
             }
             $("#listBody").html(str);
@@ -184,7 +184,7 @@ $(function () {
                     internet_service_provider = result.data[i].internet_service_provider;
                     did_mount_at = result.data[i].did_mount_at;
                     did_unmount_at = result.data[i].did_unmount_at;
-                    str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + operating_system + "</td><td>" + browser_version + "</td><td>" + internet_service_provider + "</td><td>" + device + "</td><td>" + browser + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
+                    str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + device + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + internet_service_provider + "</td><td>" + operating_system + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
                 }
                 $("#listBody").html(str);
             }

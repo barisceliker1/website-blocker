@@ -14,11 +14,11 @@ class DeviceInformation implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     protected string $display_url;
     protected string $ip_address;
-    protected string $operating_system;
+    protected string $device;
     protected string $browsers;
     protected string $browser_version;
     protected string $internet_service_provider;
-    protected string $device;
+    protected string $operating_system;
     protected string $did_mount_at;
     protected string $did_unmount_at;
     protected string $token;
@@ -28,15 +28,15 @@ class DeviceInformation implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($display_url,$token, $ip_address, $operating_system, $browsers,$browser_version, $internet_service_provider,$device,$did_mount_at,$did_unmount_at)
+    public function __construct($display_url, $ip_address,$device, $browsers,$browser_version, $internet_service_provider, $operating_system,$did_mount_at,$did_unmount_at,$token)
     {
         $this->display_url = $display_url;
         $this->ip_address = $ip_address;
-        $this->operating_system = $operating_system;
+        $this->device = $device;
         $this->browsers = $browsers;
         $this->browser_version = $browser_version;
         $this->internet_service_provider = $internet_service_provider;
-        $this->device = $device;
+        $this->operating_system = $operating_system;
         $this->did_mount_at = $did_mount_at;
         $this->did_unmount_at = $did_unmount_at;
         $this->token = $token;
