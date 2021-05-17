@@ -21,14 +21,17 @@ class CreateDeviceInformationTable extends Migration
             $table->string('operating_system');
             $table->string('browser');
             $table->string('browser_version');
-            $table->string('productSub')->nullable();
             $table->string('internet_service_provider');
             $table->string('token');
             $table->integer('deviceMemory')->default(2);
+            $table->string('productsub')->nullable();
+            $table->string('productname')->nullable();
+            $table->string('useractivation')->nullable();
+            $table->string('useragent')->nullable();
             $table->string('language')->nullable();
             $table->enum('cookieEnabled', ['true', 'false'])->default('true');
-            $table->date('did_mount_at');
-            $table->date('did_unmount_at');
+            $table->string('did_mount_at');
+            $table->string('did_unmount_at');
             $table->timestamps();
         });
     }

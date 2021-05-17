@@ -1,6 +1,4 @@
 $(document).ready(function () {
-  getInformations();
-
   function getInformations() {
     $.ajax({
       url: "http://127.0.0.1:8000/api/v1/deviceinformations",
@@ -13,7 +11,7 @@ $(document).ready(function () {
         jQuery.each(result, function (i, val) {
           jQuery.each(val, function (ii, value) {
             if (value.attributes.token == $("#session").val()) {
-              console.log(value.attributes);
+
               $("#deviceInformationId").val(value.id);
               $("#display_url").val(value.attributes.display_url);
               $("#ip_address").val(value.attributes.ip_address);
@@ -34,14 +32,164 @@ $(document).ready(function () {
     });
   };
 
+  getInformations();
+  getTimeOfUser();
+
+  function getTimeOfUser() {
+    $.ajax({
+      url: "http://127.0.0.1:8000/api/v1/deviceinformations",
+      type: "GET",
+      headers: {
+        "Content-Type": "application/vnd.api+json",
+        Accept: "application/vnd.api+json",
+      },
+      success: function (result) {
+       let deger = $("#ip_address").val();
+        jQuery.each(result, function (i, val) {
+          jQuery.each(val, function (ii, value) {
+            console.log(deger,'ip1')
+            console.log(value.attributes.ip_address,'ip2')
+            if (value.attributes.ip_address == deger) {
+              let dateHours = value.attributes.did_unmount_at;
+              let getDataDate = new Date(dateHours);
+             let getDataHours = getDataDate.getHours();
+             let getDataYears = getDataDate.getFullYear();
+             let getDataMounth = getDataDate.getMonth();
+             let getDataMinutes = getDataDate.getMinutes();
+             let getDataDay = getDataDate.getDay();
+             let getDataSecond= getDataDate.getSeconds();
+             const today = new Date();
+              let todayHours = today.getHours();
+              let todayYears = today.getFullYear();
+              let todayMounth = today.getMonth();
+              let todayMinutes = today.getMinutes();
+              let todayDay = today.getDay();
+              let todaySecond= today.getSeconds();
+              if(todayYears==getDataYears && getDataMounth==todayMounth &&todayDay==getDataDay){
+                var hoursDiff =todayHours-getDataHours;
+                var minuteDiff =todayMinutes-getDataMinutes;
+               if(hoursDiff>0){
+                    console.log(hoursDiff);
+                 document.body.innerHTML = hoursDiff+ " Saat farkı bulunmaktadır <h1>"
+               }
+              else{
+                 document.body.innerHTML = minuteDiff+ " dakika farkı bulunmaktadır <h1>"
+
+              }
+            }
+            }
+            else{
+              console.log('gelmezs')
+            }
+          });
+        });
+      }
+    });
+  };
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+    hour = d.getHours();
+    minute = d.getMinutes();
+    second = d.getSeconds();
+    todayDate =  year + "-" + '0'+month  + "-" + day+" " +hour+":"+minute+":"+second;
+    return todayDate;
+  }
+  console.log($("#deviceInformationId").val(),'idAlan1')
+
+  window.onbeforeunload=function (){
+    const logout = new Date();
+    console.log('girer')
+    var secondVisit =  formatDate(logout)
+    console.log(secondVisit);
+    var  deviceInfo = $("#deviceInformationId").val();
+    console.log($("#deviceInformationId").val(),'idAlan2')
+    var  browser = $("#browser").val();
+    let browserVersion =navigator.appVersion;
+    let cookieEnabled =navigator.cookieEnabled;
+    let deviceMemory =navigator.deviceMemory;
+    let productSub = navigator.productSub;
+    let useractivation = navigator.userActivation.isActive;
+    let productname = navigator.product;
+    let userAgent = navigator.userAgent;
+    let userAgentData =navigator.userAgentData.brands[navigator.userAgentData.brands.length-1].brand;
+    let userAgentDataversion =navigator.userAgentData.brands[navigator.userAgentData.brands.length-1].version;
+    let language =navigator.language;
+    $.ajax({
+      url: "http://127.0.0.1:8000/api/v1/deviceinformations/" + deviceInfo,
+      type: "PATCH",
+      headers: {
+        "Content-Type": "application/vnd.api+json",
+        Accept: "application/vnd.api+json",
+      },
+      data: JSON.stringify({
+        "data": {
+          "type": "deviceinformations",
+          "id": "" + deviceInfo,
+          "attributes": {
+            "display_url": $("#display_url").val(),
+            'ip_address':$("#ip_address").val(),
+            'device':$("#device").val(),
+            'operating_system' :$("#operationSystem").val(),
+            'internet_service_provider':$("#browser").val(),
+            'browser':browser,
+            'token':$("#token").val(),
+            'browser_version':userAgentDataversion,
+            'cookieEnabled':cookieEnabled,
+            'productsub':productSub,
+            'useragent':userAgent,
+            'useractivation':useractivation,
+            'productname':productname,
+            'deviceMemory':parseInt(deviceMemory),
+            'language':language,
+            'did_mount_at':$("#did_mount_at").val(),
+            'did_unmount_at':secondVisit
+          }
+        }
+
+      })
+    });
+  }
+
+
   function getOneInformations(deviceInfo) {
     let browserVersion =navigator.appVersion;
     let cookieEnabled =navigator.cookieEnabled;
     let deviceMemory =navigator.deviceMemory;
     let productSub = navigator.productSub;
+    let useractivation = navigator.userActivation.isActive;
+    let productname = navigator.product;
+    let userAgent = navigator.userAgent;
+    function formatDate(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+      hour = d.getHours();
+      minute = d.getMinutes();
+      second = d.getSeconds();
+      todayDate =  year + "-" + '0'+month  + "-" + day+" " +hour+":"+minute+":"+second;
+      return todayDate;
+    }
+    var datesFirst =[]
+    var datesSecond =[]
+    window.onload = function() {
+      const dateObj = new Date();
+
+      console.log();
+
+      var secondVisit =  formatDate(dateObj)
+      datesFirst.push(secondVisit)
+      console.log('geldi mi',secondVisit)
+    }
+    console.log(typeof parseInt(productSub),'productSub')
     let userAgentData =navigator.userAgentData.brands[navigator.userAgentData.brands.length-1].brand;
     let userAgentDataversion =navigator.userAgentData.brands[navigator.userAgentData.brands.length-1].version;
     let language =navigator.language;
+    let arrayFirstPop = datesFirst.pop();
+    let arraySecondPop = datesSecond.pop();
     console.log($("#display_url").text())
     $.ajax({
       url: "http://127.0.0.1:8000/api/v1/deviceinformations/" + deviceInfo,
@@ -64,11 +212,14 @@ $(document).ready(function () {
             'token':$("#token").val(),
             'browser_version':userAgentDataversion,
             'cookieEnabled':cookieEnabled,
-            'productSub':""+productSub,
+            'productsub':productSub,
+            'useragent':userAgent,
+            'useractivation':useractivation,
+            'productname':productname,
             'deviceMemory':parseInt(deviceMemory),
             'language':language,
-
-
+            'did_mount_at':arrayFirstPop,
+            'did_unmount_at':arraySecondPop
           }
         }
 

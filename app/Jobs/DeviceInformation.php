@@ -28,7 +28,7 @@ class DeviceInformation implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($display_url,$token, $ip_address, $operating_system, $browsers,$browser_version, $internet_service_provider,$device,$did_mount_at,$did_unmount_at)
+    public function __construct($display_url, $ip_address, $browsers,$browser_version, $internet_service_provider,$operating_system,$device,$did_mount_at,$did_unmount_at,$token)
     {
         $this->display_url = $display_url;
         $this->ip_address = $ip_address;

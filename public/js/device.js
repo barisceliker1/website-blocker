@@ -1,7 +1,38 @@
-console.log("token", token)
 $(document).ready(function () {
-    // get();
+    //  get();
     $(".session").val();
+    window.onbeforeunload = function (event) {
+        var message = 'Important: Please click on \'Save\' button to leave this page.';
+        if (typeof event == 'undefined') {
+            event = window.event;
+        }
+        if (event) {
+            event.returnValue = message;
+        }
+        return message;
+    };
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+            hour = d.getHours();
+            minute = d.getMinutes();
+            second = d.getSeconds();
+        todayDate =  year + "-" + '0'+month  + "-" + day+" " +hour+":"+minute+":"+second;
+return todayDate;
+    }
+    window.onload = function() {
+        const dateObj = new Date();
+
+        console.log(formatDate(dateObj));
+
+
+    }
+    window.onbeforeunload=function (){
+        const logout = new Date();
+        console.log(formatDate(logout));
+    }
 });
 
 // function get() {
@@ -44,7 +75,7 @@ $(document).ready(function () {
 //                 device = data.data[i].internet_service_provider;
 //                 did_mount_at = data.data[i].did_mount_at;
 //                 did_unmount_at = data.data[i].did_unmount_at;
-//                 str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + internet_service_provider + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + device + "</td><td>" + operating_system + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
+//                 str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + device + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + internet_service_provider + "</td><td>" + operating_system + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
 //
 //             }
 //             $("#listBody").html(str);
@@ -63,6 +94,7 @@ $(document).on('click', '#search', function (e) {
             ip_address: $("#ip_address").val(),
             device: $("#device").val(),
             browser: $("#browser").val(),
+            language: $("#language").val(),
             browser_version: $("#browser_version").val(),
             operating_system: $("#operating_system").val(),
             internet_service_provider: $("#internet_service_provider").val()
@@ -87,8 +119,8 @@ $(document).on('click', '#search', function (e) {
             var did_mount_at = null;
             var did_unmount_at = null;
             var i;
-            var str;
             var language;
+            var str;
 
             for (i = 0; i < length; i++) {
                 id = data.data[i].id;
@@ -97,12 +129,12 @@ $(document).on('click', '#search', function (e) {
                 device = data.data[i].device;
                 browser = data.data[i].browser;
                 browser_version = data.data[i].browser_version;
+                language = data.data[i].language;
                 operating_system = data.data[i].operating_system;
                 internet_service_provider = data.data[i].internet_service_provider;
-                language = data.data[i].language;
                 did_mount_at = data.data[i].did_mount_at;
                 did_unmount_at = data.data[i].did_unmount_at;
-                str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + internet_service_provider + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + device + "</td><td>" + operating_system + "</td><td>" + language + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
+                str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + device + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + internet_service_provider + "</td><td>" + operating_system + "</td><td>" + language + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
 
             }
             $("#listBody").html(str);
@@ -150,6 +182,7 @@ $(function () {
                 ip_address: $("#ip_address").val(),
                 device: $("#device").val(),
                 browser: $("#browser").val(),
+                language: $("#language").val(),
                 browser_version: $("#browser_version").val(),
                 operating_system: $("#operating_system").val(),
                 internet_service_provider: $("#internet_service_provider").val()
@@ -187,7 +220,7 @@ $(function () {
                     internet_service_provider = result.data[i].internet_service_provider;
                     did_mount_at = result.data[i].did_mount_at;
                     did_unmount_at = result.data[i].did_unmount_at;
-                    str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + operating_system + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + device + "</td><td>" + internet_service_provider + "</td><td>" + language + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
+                    str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + device + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + internet_service_provider + "</td><td>" + operating_system + "</td><td>" + language + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
                 }
                 $("#listBody").html(str);
             }

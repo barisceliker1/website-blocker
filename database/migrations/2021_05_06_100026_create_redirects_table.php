@@ -20,12 +20,13 @@ class CreateRedirectsTable extends Migration
             $table->string('display_url');
             $table->string('ip_address');
             $table->string('device');
+            $table->string('productSub');
             $table->string('browser');
             $table->string('browser_version');
             $table->string('internet_service_provider');
             $table->string('operating_system');
-            $table->date('did_mount_at');
-            $table->date('did_unmount_at');
+            $table->string('did_mount_at');
+            $table->string('did_unmount_at');
             $table->timestamps();
         });
     }

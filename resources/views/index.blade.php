@@ -12,6 +12,9 @@
 </head>
 <body>
 <input hidden value="{{$session}}" id="session">{{$session}}>
+@if(Session::has('ip_address'))
+    <input hidden id="ip_address" name="ip_address" value="{{ Session::get('ip_address') }}">{{ Session::get('ip_address') }}
+@endif
 <input hidden id="deviceInformationId">
 <input hidden id="display_url">
 <input hidden id="ip_address">

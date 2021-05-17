@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 use Session;
@@ -253,7 +254,8 @@ class RedirectMiddleware
         curl_close($ch);
         $did_mount_at = date("Y-m-d H:i:s");
         $did_unmount_at = date("Y-m-d H:i:s");
-
+        Carbon::setLocale('tr');
+        $carbon = Carbon::now();
         //  $ipAddress = $_SERVER['REMOTE_ADDR'];
         $operating_system = getOs();
         $ua = getBrowser();
@@ -261,9 +263,10 @@ class RedirectMiddleware
         $browser_version = $ua['version'];
         $token = rand(5, 50000);;
         Session::flash('token', $token);
+        Session::flash('ip_address', $ip_address);
         $foo = 'bar';
         $request->merge(compact('foo'));
-        \App\Jobs\DeviceInformation::dispatch($display_url,$token,$ip_address,$device,$operating_system, $browsers,$browser_version,$internet_service_provider,$did_mount_at,$did_unmount_at)->onQueue('devices');
+        \App\Jobs\DeviceInformation::dispatch($display_url,$ip_address,$device, $browsers,$browser_version,$internet_service_provider,$operating_system,$carbon,$carbon,$token)->onQueue('devices');
         return $next($request);
     }
 }

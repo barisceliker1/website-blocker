@@ -7,10 +7,14 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
+use Carbon\Carbon;
 class RedirectController extends Controller
 {
     function index()
     {
+        Carbon::setLocale('tr-TR');
+       echo  $carbon = Carbon::now();
+        $did_mount_at = date("Y-m-d H:i:s");
         $pagination = DB::table('device_information')->paginate(10);
         $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 // create curl resource
@@ -287,6 +291,7 @@ echo $str."<br>";;
         $searchBrowserVers = $request->input('browser_version');
         $searchIsp = $request->input('internet_service_provider');
         $searchOs = $request->input('operating_system');
+        $searchLanguage = $request->input('language');
         $searchLogin = $request->input('did_mount_at');
         $searchLogout = $request->input('did_unmount_at');
         $posts = DeviceInformation::query()
@@ -294,6 +299,7 @@ echo $str."<br>";;
             ->where('ip_address', 'LIKE', "%{$searchIP}%")
             ->where('device', 'LIKE', "%{$searchDevice}%")
             ->where('browser', 'LIKE', "%{$searchBrowser}%")
+            ->where('language', 'LIKE', "%{$searchLanguage}%")
             ->where('browser_version', 'LIKE', "%{$searchBrowserVers}%")
             ->where('internet_service_provider', 'LIKE', "%{$searchIsp}%")
             ->where('operating_system', 'LIKE', "%{$searchOs}%")

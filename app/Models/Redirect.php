@@ -17,6 +17,7 @@ class Redirect extends Model
         'operating_system',
         'internet_service_provider',
         'did_mount_at',
+        'productsub',
         'did_unmount_at',
         'browser',
         'browser_version'];

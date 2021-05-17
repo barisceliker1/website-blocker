@@ -14,6 +14,7 @@
     <link rel="stylesheet"type="text/css" href="{{asset('css')}}/device.css">
 </head>
 <body>
+<input hidden id="nameOfdevice" name="nameOfdevice">
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <h3 STYLE="margin:auto;text-align: center;font-weight: bold;">VISITER'S DEVICE INFORMATION</h3>
@@ -65,6 +66,7 @@
                         <th><input type="text" class="form-control" name="browser_version" id="browser_version" placeholder="Browser Version"></th>
                         <th><input type="text" class="form-control" name="internet_service_provider" id="internet_service_provider" placeholder="Internet Service Provider"></th>
                         <th><input type="text" class="form-control" name="operating_system" id="operating_system" placeholder="Operating System"></th>
+                        <th><input type="text" class="form-control" name="language" id="language" placeholder="language"></th>
                         <th><input type="date" class="form-control" name="did_mount_at" id="did_mount_at"></th>
                         <th><input type="date" class="form-control" name="did_unmount_at" id="did_unmount_at"></th>
                         <th>
@@ -77,17 +79,31 @@
             <tr>
                 <th>URL</th>
                 <th>IP ADDRESS</th>
-                <th>DEVICE</th>
+                <th>INTERNET SERVİCE PROVİDER</th>
                 <th>BROWSER</th>
                 <th>BROWSER VERSION</th>
-                <th>INTERNET SERVİCE PROVİDER</th>
                 <th>OPERATING SYSTEM</th>
+                <th>DEVICE</th>
                 <th>Language</th>
                 <th>Did Mount At</th>
                 <th>Did Mount At</th>
             </tr>
             </thead>
             <tbody id="listBody">
+            @foreach($pagination as $data)
+                <tr>
+                    <td>{{$data->display_url}}</td>
+                    <td>{{$data->ip_address}}</td>
+                    <td>{{$data->device}}</td>
+                    <td>{{$data->browser}}</td>
+                    <td> {{$data->browser_version}}</td>
+                    <td>{{$data->internet_service_provider}}</td>
+                    <td>{{$data->operating_system}}</td>
+                    <td>{{$data->did_mount_at}}</td>
+                    <td>{{$data->did_unmount_at}}</td>
+                </tr>
+            @endforeach
+
             <!-- Call to action buttons -->
             </tbody>
         </table>
