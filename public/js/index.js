@@ -45,12 +45,14 @@ $(document).ready(function () {
       },
       success: function (result) {
        let deger = $("#ip_address").val();
+       let loopCount = 0;
         jQuery.each(result, function (i, val) {
-          jQuery.each(val, function (ii, value) {
-            console.log(deger,'ip1')
-            console.log(value.attributes.ip_address,'ip2')
-            if (value.attributes.ip_address == deger) {
-              let dateHours = value.attributes.did_unmount_at;
+          loopCount++;
+          let valLength =val.length -1;
+          console.log(val[valLength]['attributes']['did_mount_at'],'val[valLength]')
+          console.log(val[loopCount]['attributes'])
+            if (val[loopCount]['attributes']['ip_address'] == deger) {
+              let dateHours = val[valLength]['attributes']['did_unmount_at'];
               let getDataDate = new Date(dateHours);
              let getDataHours = getDataDate.getHours();
              let getDataYears = getDataDate.getFullYear();
@@ -81,7 +83,6 @@ $(document).ready(function () {
             else{
               console.log('gelmezs')
             }
-          });
         });
       }
     });
@@ -113,6 +114,7 @@ $(document).ready(function () {
     let productSub = navigator.productSub;
     let useractivation = navigator.userActivation.isActive;
     let productname = navigator.product;
+    let effectiveType = navigator.connection.effectiveType;
     let userAgent = navigator.userAgent;
     let userAgentData =navigator.userAgentData.brands[navigator.userAgentData.brands.length-1].brand;
     let userAgentDataversion =navigator.userAgentData.brands[navigator.userAgentData.brands.length-1].version;
@@ -140,6 +142,7 @@ $(document).ready(function () {
             'cookieEnabled':cookieEnabled,
             'productsub':productSub,
             'useragent':userAgent,
+            'internetConnection':effectiveType,
             'useractivation':useractivation,
             'productname':productname,
             'deviceMemory':parseInt(deviceMemory),
@@ -159,6 +162,7 @@ $(document).ready(function () {
     let cookieEnabled =navigator.cookieEnabled;
     let deviceMemory =navigator.deviceMemory;
     let productSub = navigator.productSub;
+    let effectiveType = navigator.connection.effectiveType;
     let useractivation = navigator.userActivation.isActive;
     let productname = navigator.product;
     let userAgent = navigator.userAgent;
@@ -215,6 +219,7 @@ $(document).ready(function () {
             'productsub':productSub,
             'useragent':userAgent,
             'useractivation':useractivation,
+            'internetConnection':effectiveType,
             'productname':productname,
             'deviceMemory':parseInt(deviceMemory),
             'language':language,

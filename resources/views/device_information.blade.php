@@ -115,6 +115,9 @@
         </center>
     </div>
 </center>
+<canvas id="W1_canvas">
+    Please use a browser that supports "canvas"
+</canvas>
 <script>
     const token = "{{ request()->token }}";
 </script>

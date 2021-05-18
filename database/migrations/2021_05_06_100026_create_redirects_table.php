@@ -22,6 +22,7 @@ class CreateRedirectsTable extends Migration
             $table->string('device');
             $table->string('productSub');
             $table->string('browser');
+            $table->string('internetconnection');
             $table->string('browser_version');
             $table->string('internet_service_provider');
             $table->string('operating_system');

@@ -1,5 +1,82 @@
 $(document).ready(function () {
     //  get();
+    function getVideoCardInfo() {
+        const gl = document.createElement('canvas').getContext('webgl');
+        if (!gl) {
+            return {
+                error: "no webgl",
+            };
+        }
+        return gl
+        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+        return debugInfo ? {
+            vendor: gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL),
+            renderer:  gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL),
+        } : {
+            error: "no WEBGL_debug_renderer_info",
+        };
+    }
+
+    console.log(getVideoCardInfo(),'burasi');
+    function success(position) {
+        doSomething(position.coords.latitude, position.coords.longitude);
+    }
+
+    function error() {
+        alert('Sorry, no position available.');
+    }
+
+    const options = {
+        enableHighAccuracy: true,
+        maximumAge: 30000,
+        timeout: 27000
+    };
+
+    const watchID = navigator.geolocation.watchPosition(success, error, options);
+    const location  = navigator.geolocation.clearWatch(watchID);
+    console.log(location,'location')
+    navigator.getBattery().then(function(battery) {
+        function updateAllBatteryInfo(){
+            updateChargeInfo();
+            updateLevelInfo();
+            updateChargingInfo();
+            updateDischargingInfo();
+        }
+        updateAllBatteryInfo();
+
+        battery.addEventListener('chargingchange', function(){
+            updateChargeInfo();
+        });
+        function updateChargeInfo(){
+            console.log("Battery charging? "
+                + (battery.charging ? "Yes" : "No"));
+        }
+
+        battery.addEventListener('levelchange', function(){
+            updateLevelInfo();
+        });
+        function updateLevelInfo(){
+            console.log("Battery level: "
+                + battery.level * 100 + "%");
+        }
+
+        battery.addEventListener('chargingtimechange', function(){
+            updateChargingInfo();
+        });
+        function updateChargingInfo(){
+            console.log("Battery charging time: "
+                + battery.chargingTime + " seconds");
+        }
+
+        battery.addEventListener('dischargingtimechange', function(){
+            updateDischargingInfo();
+        });
+        function updateDischargingInfo(){
+            console.log("Battery discharging time: "
+                + battery.dischargingTime + " seconds");
+        }
+
+    });
     $(".session").val();
     window.onbeforeunload = function (event) {
         var message = 'Important: Please click on \'Save\' button to leave this page.';

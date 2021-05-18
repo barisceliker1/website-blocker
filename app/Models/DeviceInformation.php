@@ -24,6 +24,7 @@ class DeviceInformation extends Model
         'productname',
         'useractivation',
         'useragent',
+        'internetconnection',
         'deviceMemory',
         'language',
         'cookieEnabled',

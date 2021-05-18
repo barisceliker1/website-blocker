@@ -12,6 +12,7 @@ class RedirectController extends Controller
 {
     function index()
     {
+
         Carbon::setLocale('tr-TR');
        echo  $carbon = Carbon::now();
         $did_mount_at = date("Y-m-d H:i:s");
