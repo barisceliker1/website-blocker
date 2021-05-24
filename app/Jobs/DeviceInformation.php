@@ -12,16 +12,16 @@ use Illuminate\Queue\SerializesModels;
 class DeviceInformation implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected string $display_url;
-    protected string $ip_address;
-    protected string $operating_system;
-    protected string $browsers;
-    protected string $browser_version;
-    protected string $internet_service_provider;
-    protected string $device;
-    protected string $did_mount_at;
-    protected string $did_unmount_at;
-    protected string $token;
+    protected $display_url;
+    protected $ip_address;
+    protected $operating_system;
+    protected $browsers;
+    protected $browser_version;
+    protected $internet_service_provider;
+    protected $device;
+    protected $did_mount_at;
+    protected $did_unmount_at;
+    protected $token;
 
     /**
      * Create a new job instance.

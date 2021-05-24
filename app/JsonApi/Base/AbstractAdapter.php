@@ -28,7 +28,9 @@ class AbstractAdapter extends LJAAbstractAdapter
                 $record->$relationName()
                     ->where($foreignKey, $item[$primaryKey])
                     ->update(self::array_map_assoc(
-                        fn($k, $v) => [self::camelToSnake($k), $v],
+                        function ($k, $v) {
+                            return [self::camelToSnake($k), $v];
+                        },
                         $item["pivots"]
                     ));
             }
@@ -40,7 +42,9 @@ class AbstractAdapter extends LJAAbstractAdapter
         if ($resource->has($relationName)) {
             $relation = $resource->get($relationName)['data'];
             $attrs = self::array_map_assoc(
-                fn($k, $v) => [self::camelToSnake($k), $v],
+                function ($k, $v) {
+                    return [self::camelToSnake($k), $v];
+                },
                 $relation['attributes']
             );
             if ($entity->$relationName) {
@@ -58,7 +62,9 @@ class AbstractAdapter extends LJAAbstractAdapter
     function snakeToCamel($str)
     {
         if (gettype($str) === 'array') {
-            return array_map(fn ($s) => self::snakeToCamel($s), $str);
+            return array_map(function ($s) {
+                return self::snakeToCamel($s);
+            }, $str);
         }
         return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $str))));
     }
@@ -69,7 +75,9 @@ class AbstractAdapter extends LJAAbstractAdapter
     function camelToSnake($str)
     {
         if (gettype($str) === 'array') {
-            return array_map(fn ($s) => self::camelToSnake($s), $str);
+            return array_map(function ($s) {
+                return self::camelToSnake($s);
+            }, $str);
         }
         return strtolower(preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', $str));
     }
@@ -86,7 +94,9 @@ class AbstractAdapter extends LJAAbstractAdapter
             $willCreate = $willUpdate = [];
             foreach ($relationData as $relation) {
                 $attrs = self::array_map_assoc(
-                    fn($k, $v) => [self::camelToSnake($k), $v],
+                    function ($k, $v) {
+                        return [self::camelToSnake($k), $v];
+                    },
                     $relation['attributes']
                 );
                 if ($relation['id'] ?? false) {

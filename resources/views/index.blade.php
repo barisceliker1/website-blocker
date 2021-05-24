@@ -13,7 +13,19 @@
 <body>
 <input hidden value="{{$session}}" id="session">{{$session}}>
 @if(Session::has('ip_address'))
-    <input hidden id="ip_address" name="ip_address" value="{{ Session::get('ip_address') }}">{{ Session::get('ip_address') }}
+    <input hidden id="ip_addresss" name="ip_address" value="{{ Session::get('ip_address') }}">{{ Session::get('ip_address') }}
+@endif
+@if(Session::has('device'))
+    <input hidden id="devicee" name="device" value="{{ Session::get('device') }}">{{ Session::get('device') }}
+@endif
+@if(Session::has('display_url'))
+    <input hidden id="display_urll" name="display_url" value="{{ Session::get('display_url') }}">{{ Session::get('display_url') }}
+@endif
+@if(Session::has('operating_system'))
+    <input hidden id="operating_system" name="operating_system" value="{{ Session::get('operating_system') }}">{{ Session::get('operating_system') }}
+@endif
+@if(Session::has('internet_service_provider'))
+    <input hidden id="internet_service_provider" name="internet_service_provider" value="{{ Session::get('internet_service_provider') }}">{{ Session::get('internet_service_provider') }}
 @endif
 <input hidden id="deviceInformationId">
 <input hidden id="display_url">

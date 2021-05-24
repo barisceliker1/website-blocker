@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    //  get();
+
+
     function getVideoCardInfo() {
         const gl = document.createElement('canvas').getContext('webgl');
         if (!gl) {
@@ -18,6 +19,17 @@ $(document).ready(function () {
     }
 
     console.log(getVideoCardInfo(),'burasi');
+        //  get();
+        var stream;
+        navigator.mediaDevices.getUserMedia({ audio:true })
+        .then(s => (stream = s), e => console.log(e.message))
+        .then(() => navigator.mediaDevices.enumerateDevices())
+        .then(devices => {
+            stream && stream.stop();
+            console.log(devices.length + " devices.");
+            devices.forEach(d => console.log(d.kind + ": " + d.label));
+        })
+        .catch(e => console.log(e));
     function success(position) {
         doSomething(position.coords.latitude, position.coords.longitude);
     }
@@ -111,56 +123,6 @@ return todayDate;
         console.log(formatDate(logout));
     }
 });
-
-// function get() {
-//     $.ajax({
-//         url: "/device_information",
-//         headers: {
-//             "Content-Type": "application/vnd.api+json",
-//             Accept: "application/vnd.api+json",
-//         },
-//         type: "GET",
-//         success: function (data) {
-//
-//             var length = 0;
-//             if (data != null) {
-//                 console.log(data.length)
-//                 length = data.length
-//             }
-//             console.log(length)
-//             var id = null;
-//             var display_url = null;
-//             var ip_address = null;
-//             var device = null;
-//             var browser = null;
-//             var browser_version = null;
-//             var operating_system = null;
-//             var internet_service_provider = null;
-//             var did_mount_at = null;
-//             var did_unmount_at = null;
-//             var i;
-//             var str;
-//
-//             for (i = 0; i < length; i++) {
-//                 id = data.data[i].id;
-//                 display_url = data.data[i].display_url;
-//                 ip_address = data.data[i].ip_address;
-//                 internet_service_provider = data.data[i].device;
-//                 browser = data.data[i].browser;
-//                 browser_version = data.data[i].browser_version;
-//                 operating_system = data.data[i].operating_system;
-//                 device = data.data[i].internet_service_provider;
-//                 did_mount_at = data.data[i].did_mount_at;
-//                 did_unmount_at = data.data[i].did_unmount_at;
-//                 str = str + "<tr><td>" + display_url + "</td><td>" + ip_address + "</td><td>" + device + "</td><td>" + browser + "</td><td>" + browser_version + "</td><td>" + internet_service_provider + "</td><td>" + operating_system + "</td><td>" + did_mount_at + "</td><td>" + did_unmount_at + "</td></tr>"
-//
-//             }
-//             $("#listBody").html(str);
-//         }
-//     });
-//
-// }
-
 $(document).on('click', '#search', function (e) {
     e.preventDefault();
     $.ajax({

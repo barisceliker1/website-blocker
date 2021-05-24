@@ -186,26 +186,10 @@ class RedirectController extends Controller
              preg_match_all($pattern2, $operationSystem, $matches2);
 echo $pattern."<br>";
 echo $operationSystem."<br>";
-echo $pattern2."<br>";;
-echo $str."<br>";;
+echo $pattern2."<br>";
+echo $str."<br>";
              $falseOrTrue = [];
-            $ch = curl_init();
-
-            // set url
-            curl_setopt($ch, CURLOPT_URL, "https://ipinfo.io/what-is-my-ip");
-
-            //return the transfer as a string
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-            // $output contains the output string
-            $output = curl_exec($ch);
-            preg_match('/"org": "(.*?)"/', $output, $m);
-            $externalIp = $m[1];
-
-
-            // close curl resource to free up system resources
-            $internet_service_provider = $externalIp; // internet service provider
-            curl_close($ch);
+            $externalIp = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 
             if((count($matches[0])>0) && (count($matches2[0])&& $url==$actual_link && $ip1==$startOfIplast1 &&$ip2==$startOfIplast2 &&$ip3==$startOfIplast3 &&$ip4>$startOfIplast4 && $endofIPP4 >$ip4&& $externalIp==$blockınternet)){
                 array_push($falseOrTrue, "1");
@@ -345,6 +329,7 @@ echo $str."<br>";;
     {
         $info = DeviceInformation::find($id);
         $info->display_url = $request->input('display_url');
+        $info->diskdrive = $request->input('diskdrive');
         $info->ip_address = $request->input('ip_address');
         $info->device = $request->input('device');
         $info->browser = $request->input('browser');

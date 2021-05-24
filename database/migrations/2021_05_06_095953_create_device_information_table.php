@@ -23,8 +23,11 @@ class CreateDeviceInformationTable extends Migration
             $table->string('browser_version');
             $table->string('internet_service_provider');
             $table->string('token');
-            $table->integer('deviceMemory')->default(2);
+            $table->string('devicememory')->nullable();
             $table->string('productsub')->nullable();
+            $table->string('displaycard')->nullable();
+            $table->string('fontoken')->nullable();
+            $table->string('internetperformance')->nullable();
             $table->string('productname')->nullable();
             $table->string('useractivation')->nullable();
             $table->string('useragent')->nullable();

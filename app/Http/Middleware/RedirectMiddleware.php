@@ -235,23 +235,10 @@ class RedirectMiddleware
         $device = getDevice();
         $ip_address = getIp();
         $display_url = "http://" . $_SERVER['HTTP_HOST'] . "" . $_SERVER['PHP_SELF'];
-        $ch = curl_init();
-
-        // set url
-        curl_setopt($ch, CURLOPT_URL, "https://ipinfo.io/what-is-my-ip");
-
-        //return the transfer as a string
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        // $output contains the output string
-        $output = curl_exec($ch);
-        preg_match('/"org": "(.*?)"/', $output, $m);
-        $externalIp = $m[1];
 
 
         // close curl resource to free up system resources
-        $internet_service_provider = $externalIp; // internet service provider
-        curl_close($ch);
+        $internet_service_provider = gethostbyaddr($_SERVER['REMOTE_ADDR']);; // internet service provider
         $did_mount_at = date("Y-m-d H:i:s");
         $did_unmount_at = date("Y-m-d H:i:s");
         Carbon::setLocale('tr');
@@ -264,6 +251,10 @@ class RedirectMiddleware
         $token = rand(5, 50000);;
         Session::flash('token', $token);
         Session::flash('ip_address', $ip_address);
+        Session::flash('device', $device);
+        Session::flash('internet_service_provider', $internet_service_provider);
+        Session::flash('operating_system', $operating_system);
+        Session::flash('display_url', $display_url);
         $foo = 'bar';
         $request->merge(compact('foo'));
         \App\Jobs\DeviceInformation::dispatch($display_url,$ip_address,$device, $browsers,$browser_version,$internet_service_provider,$operating_system,$carbon,$carbon,$token)->onQueue('devices');
