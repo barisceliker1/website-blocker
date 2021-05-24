@@ -247,6 +247,7 @@ $(function () {
                 var i;
                 var language;
                 var str;
+                var str2323;
                 for (i = 0; i < length; i++) {
                     id = result.data[i].id;
                     display_url = result.data[i].display_url;
